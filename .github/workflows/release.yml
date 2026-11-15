@@ -1,0 +1,99 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  # A manual run builds and signs the APK and uploads it as a run artifact. It creates no release.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    # Public repository only. A tag pushed to the private repository runs this workflow and skips
+    # the job. Renaming the public repository needs this string changed, or every tag skips the job.
+    if: github.repository == 'OneKashLabs/KashPass'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      # build-tools 34 signs: F-Droid's reproducible-build check copies the signature as that
+      # apksigner writes it.
+      - name: Install Android platform 37 and build-tools 34
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.0" "build-tools;34.0.0" > /dev/null
+
+      - name: Build the unsigned release APK
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: Read the version
+        id: version
+        run: echo "name=$(grep -E '^VERSION_NAME=' version.properties | cut -d= -f2-)" >> "$GITHUB_OUTPUT"
+
+      - name: Sign with apksigner
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          VERSION_NAME: ${{ steps.version.outputs.name }}
+        run: |
+          tools="$ANDROID_HOME/build-tools/34.0.0"
+          unsigned=app/build/outputs/apk/release/app-release-unsigned.apk
+          apk="kashpass-$VERSION_NAME.apk"
+          printf '%s' "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+          "$tools/zipalign" -c -p 4 "$unsigned"
+          "$tools/apksigner" sign --ks "$RUNNER_TEMP/release.keystore" --ks-key-alias "$KEY_ALIAS" \
+            --ks-pass env:KEYSTORE_PASSWORD --key-pass env:KEY_PASSWORD \
+            --v1-signing-enabled false --v2-signing-enabled true --v3-signing-enabled true \
+            --v4-signing-enabled false --out "$apk" "$unsigned"
+          "$tools/apksigner" verify --print-certs "$apk"
+          sha256sum "$apk" > "$apk.sha256"
+
+      - name: Remove the keystore
+        if: always()
+        run: rm -f "$RUNNER_TEMP/release.keystore"
+
+      # The body under "## [<version>]" up to the next "## " heading or the closing comment, blank
+      # edge lines trimmed.
+      - name: Take the release notes from CHANGELOG.md
+        id: notes
+        env:
+          VERSION_NAME: ${{ steps.version.outputs.name }}
+        run: |
+          awk -v v="## [$VERSION_NAME]" 'index($0, v) == 1 { f = 1; next } f && (/^## / || /^<!--/) { exit } f' CHANGELOG.md \
+            | sed -e '/./,$!d' | tac | sed -e '/./,$!d' | tac > release_notes.md
+          if [ -s release_notes.md ]; then echo "found=true" >> "$GITHUB_OUTPUT"; else
+            echo "found=false" >> "$GITHUB_OUTPUT"; echo "No CHANGELOG.md section for $VERSION_NAME"; fi
+
+      # The release and its assets in one call, so an immutable release is never sealed empty.
+      - name: Create the release with the APK
+        if: github.event_name == 'push'
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          body_path: ${{ steps.notes.outputs.found == 'true' && 'release_notes.md' || '' }}
+          generate_release_notes: ${{ steps.notes.outputs.found != 'true' }}
+          files: |
+            kashpass-${{ steps.version.outputs.name }}.apk
+            kashpass-${{ steps.version.outputs.name }}.apk.sha256
+
+      - name: Upload the APK as a run artifact
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: kashpass-${{ steps.version.outputs.name }}
+          path: kashpass-${{ steps.version.outputs.name }}.apk*

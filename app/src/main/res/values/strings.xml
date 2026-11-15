@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KashPass</string>
+
+    <!-- Lock screen -->
+    <string name="lock_no_vault">No vault yet</string>
+    <string name="lock_locked">Locked</string>
+    <string name="lock_choose_vault">Choose vault file</string>
+    <string name="lock_choose_different">Choose a different file</string>
+    <string name="lock_password_label">Vault password</string>
+    <string name="lock_show_password">Show password</string>
+    <string name="lock_hide_password">Hide password</string>
+    <string name="lock_unlock">Unlock</string>
+    <string name="lock_unlocking">Unlocking…</string>
+    <string name="lock_retry">Retry</string>
+    <string name="lock_first_run_title">Open your KeePass vault</string>
+    <string name="lock_footnote_first_run">No internet access.</string>
+    <string name="lock_footnote_no_vault">Your vault stays where you keep it. KashPass opens it with the Android file picker and has no internet access.</string>
+    <string name="lock_footnote_locked">Locks when the screen turns off, or 1 minute after you leave.</string>
+    <string name="lock_footnote_unlocking">Checking the password is slow on purpose, so guessing it is slow too.</string>
+    <string name="lock_footnote_password_unused">Your password wasn\'t used.</string>
+
+    <!-- Unlock problems -->
+    <string name="error_wrong_password">Wrong vault password. Check Caps Lock and try again.</string>
+    <string name="error_damaged_repair">This vault file is damaged. KeePass 2 on a computer can recover what\'s readable: open any database, then File, Import..., KeePass KDBX (2.x) (Repair Mode).</string>
+    <string name="error_damaged">This file is corrupted or isn\'t a KeePass vault.</string>
+    <string name="error_not_enough_memory">This vault needs more memory than this device allows.</string>
+    <string name="error_choose_failed">KashPass couldn\'t get access to that file.</string>
+    <string name="error_not_found">KashPass can\'t find this file. It may have been moved, renamed or deleted.</string>
+    <string name="error_permission_revoked">KashPass no longer has access to this file.</string>
+    <string name="error_timed_out">The file didn\'t respond in 30 seconds. If it\'s stored online, check your connection, then retry.</string>
+    <string name="error_timed_out_short">The file didn\'t respond in 30 seconds.</string>
+    <string name="action_try_again">Try again</string>
+    <string name="error_io">Couldn\'t read the file. If it\'s stored online, check your connection or make it available offline, then retry.</string>
+    <string name="error_too_large">This vault is too large for this device\'s memory (the limit here is %1$d MiB). KeePass 2 on a computer opens it.</string>
+
+    <!-- Key file -->
+    <string name="lock_add_key_file">Add key file</string>
+    <string name="lock_key_file_remove">Key file: %1$s, remove</string>
+    <string name="error_wrong_password_or_key_file">Wrong vault password or key file.</string>
+    <string name="error_wrong_password_key_file_before">This vault was unlocked with a key file before. Add it again.</string>
+    <string name="error_key_file_not_found">Key file not found. Choose it again.</string>
+    <string name="error_key_file_permission_revoked">KashPass no longer has access to the key file. Choose it again.</string>
+    <string name="error_key_file_io">Couldn\'t read the key file. If it\'s stored online, check your connection, then try again.</string>
+    <string name="error_key_file_too_large">This key file is too large for this device\'s memory (the limit here is %1$d MiB). KeePass 2 on a computer reads it.</string>
+    <string name="error_key_file_timed_out">The key file didn\'t respond in 30 seconds. If it\'s stored online, check your connection, then try again.</string>
+    <string name="error_key_file_damaged">Key file is damaged.</string>
+    <string name="error_key_file_xml_too_large">This key file is too large to read on this device. Choose another key file.</string>
+    <string name="error_not_key_file">This is a KeePass vault, not a key file.</string>
+    <string name="error_key_file_mismatch">The key file didn\'t match. Choose the right key file or use your vault password.</string>
+
+    <string name="unsupported_title">KashPass can\'t open this file</string>
+    <string name="unsupported_version">It\'s a KDBX %1$d.%2$d file. KashPass opens KDBX 4 files. KeePass 2.57 or later saves every vault as KDBX 4: open it there and save it. In KeePass 2.35 to 2.56, choose Argon2 under File, Database Settings, Security, then save.</string>
+    <string name="unsupported_newer">It\'s a KDBX %1$d.%2$d file, a newer format than KashPass opens.</string>
+    <string name="unsupported_keepass1">It\'s a KeePass 1.x file. KashPass opens KDBX 4 files: import it into KeePass 2 on your computer and save it.</string>
+    <string name="unsupported_cipher">It uses an encryption algorithm KashPass doesn\'t support. In KeePass 2, choose AES-256 or ChaCha20 under File, Database Settings, Security.</string>
+    <string name="unsupported_format_feature">It uses a format setting that current KeePass 2 versions don\'t know either, perhaps from a newer version.</string>
+    <string name="error_failed_platform">This device can\'t run the encryption this vault needs. KeePass 2 on a computer opens it.</string>
+    <string name="error_failed_internal">KashPass couldn\'t open this vault because of a problem in KashPass, not in the file. KeePass 2 on a computer opens it.</string>
+    <string name="unsupported_kdf">It uses a key derivation function KashPass doesn\'t support. In KeePass 2, choose AES-KDF or Argon2 under File, Database Settings, Security.</string>
+
+    <string name="refused_title">KashPass won\'t open this file</string>
+    <string name="refused_out_of_bounds">Its security settings are unsafe: %1$s is %2$s, outside the range KashPass accepts.</string>
+    <string name="refused_weakened">Its security settings are weaker than when you last opened it (%1$s went from %2$s to %3$s). Someone may have replaced it. Open it in KeePass 2 on your computer and check File, Database Settings, Security. If you changed this on purpose, choose the file again.</string>
+    <string name="refused_weak_type_change">Its key derivation now uses weaker settings than when you last opened it. Someone may have replaced it. Open it in KeePass 2 on your computer and check File, Database Settings, Security. If you changed this on purpose, choose the file again.</string>
+
+    <string name="kdf_setting_aes_rounds">AES-KDF iterations</string>
+    <string name="kdf_setting_argon2_iterations">Argon2 iterations</string>
+    <string name="kdf_setting_argon2_memory">Argon2 memory in bytes</string>
+    <string name="kdf_setting_argon2_parallelism">Argon2 parallelism</string>
+    <string name="kdf_setting_argon2_version">Argon2 version</string>
+    <string name="kdf_setting_argon2_work">Argon2 iterations × memory (MiB)</string>
+    <string name="kdf_setting_work_units">Key derivation work in units of KeePass 2\'s defaults</string>
+
+    <!-- Vault browser -->
+    <string name="browse_search_placeholder">Search entries</string>
+    <string name="browse_clear_search">Clear search</string>
+    <string name="browse_chip_all">All</string>
+    <string name="browse_chip_recycle_bin">Recycle bin</string>
+    <string name="browse_untitled">(untitled)</string>
+    <string name="browse_empty_vault">No entries in this vault</string>
+    <string name="browse_no_matches">No matches for \"%1$s\"</string>
+    <plurals name="browse_weak_aes">
+        <item quantity="one">Weak security settings: AES-KDF with %1$s iteration. KeePass 2 recommends at least 600,000. Change it in KeePass 2 under File, Database Settings, Security.</item>
+        <item quantity="other">Weak security settings: AES-KDF with %1$s iterations. KeePass 2 recommends at least 600,000. Change it in KeePass 2 under File, Database Settings, Security.</item>
+    </plurals>
+    <plurals name="browse_weak_argon2">
+        <item quantity="one">Weak security settings: Argon2 with %1$s iteration and %2$s MiB. KeePass 2 recommends at least 2 iterations and 64 MiB. Change it in KeePass 2 under File, Database Settings, Security.</item>
+        <item quantity="other">Weak security settings: Argon2 with %1$s iterations and %2$s MiB. KeePass 2 recommends at least 2 iterations and 64 MiB. Change it in KeePass 2 under File, Database Settings, Security.</item>
+    </plurals>
+    <string name="browse_bytes_after_end">This file has extra data after its end; saving removes it</string>
+    <string name="browse_dismiss">Dismiss</string>
+    <plurals name="browse_entry_count">
+        <item quantity="one">%d entry</item>
+        <item quantity="other">%d entries</item>
+    </plurals>
+
+    <!-- Entry details -->
+    <string name="field_user_name">User name</string>
+    <string name="field_password">Password</string>
+    <string name="field_url">URL</string>
+    <string name="field_notes">Notes</string>
+    <string name="browse_match_tag">Tag</string>
+    <string name="browse_match_field">Field</string>
+    <string name="browse_match_prefix">"%1$s · "</string>
+    <string name="entry_show">Show %1$s</string>
+    <string name="entry_hide">Hide %1$s</string>
+    <string name="entry_copy">Copy %1$s</string>
+    <string name="entry_placeholder_note">Filled in by KeePass 2 when used. KashPass shows it as stored.</string>
+    <string name="entry_copy_password_ref">%1$s inserts another entry\'s password. Copy it?</string>
+    <string name="entry_copy_confirm">Copy</string>
+    <string name="entry_copied">%1$s copied. Clears in 30 s.</string>
+    <string name="entry_copy_failed">Couldn\'t copy %1$s.</string>
+    <string name="entry_hidden">Hidden</string>
+    <string name="entry_attachments">Attachments</string>
+    <string name="entry_attachment_later">Can\'t be opened in KashPass</string>
+    <string name="field_title">Title</string>
+    <string name="editor_title_new">New entry</string>
+    <string name="editor_title_edit">Edit entry</string>
+    <string name="editor_close">Close without saving</string>
+    <string name="editor_discard_confirm">Discard?</string>
+    <string name="editor_save">Save</string>
+    <string name="editor_saving">Saving…</string>
+    <string name="editor_show_password">Show password</string>
+    <string name="editor_hide_password">Hide password</string>
+    <string name="editor_generate">Generate</string>
+    <plurals name="editor_length">
+        <item quantity="one">%d character</item>
+        <item quantity="other">%d characters</item>
+    </plurals>
+    <string name="editor_length_label">Password length</string>
+    <string name="editor_symbols">Include symbols</string>
+    <string name="editor_group">Group</string>
+    <string name="editor_group_top_level">Top level</string>
+    <string name="browse_edit">Edit %1$s</string>
+    <string name="browse_add">Add entry</string>
+    <string name="notice_updated">Updated to the latest version of the file.</string>
+    <string name="notice_entry_gone">This entry was deleted in another app.</string>
+    <string name="notice_check_failed">Couldn\'t read the file to check for changes. Try again.</string>
+    <string name="notice_saved">Saved</string>
+    <string name="save_not_writable">This file\'s app allows reading only.</string>
+    <string name="save_no_write_grant">KashPass can only read this file. Choose it again to allow changes.</string>
+    <string name="save_not_content">This file can\'t be saved from KashPass. Choose it again from the file picker.</string>
+    <string name="save_unavailable">The file can\'t be reached. Your edits are not saved.</string>
+    <string name="save_read_only">This vault is read-only.</string>
+    <string name="save_failed_generic">Not saved.</string>
+    <string name="browse_delete">Delete %1$s</string>
+    <plurals name="delete_moved_to_bin">
+        <item quantity="one">Moved to the recycle bin</item>
+        <item quantity="other">%d moved to the recycle bin</item>
+    </plurals>
+    <string name="delete_forever">Delete forever? Can\'t be undone.</string>
+    <string name="swipe_delete">Delete</string>
+    <string name="delete_undo">Undo</string>
+    <string name="delete_deleted">Deleted</string>
+    <string name="delete_confirm_action">Delete</string>
+    <string name="delete_cancel">Cancel</string>
+    <string name="problem_title">Not saved</string>
+    <string name="problem_conflict">%1$s changed since you opened it. Your edits are not saved.</string>
+    <string name="problem_not_reachable">The file didn\'t respond in 30 seconds. Nothing was written.</string>
+    <string name="problem_unchanged">Not saved. The file is unchanged.</string>
+    <string name="problem_maybe_damaged">Not saved. The file may be corrupted. Open a backup from Vault backups and save it as a new file.</string>
+    <string name="problem_verify_failed">Not saved: KashPass couldn\'t confirm the save. Your previous version is kept in Vault backups.</string>
+    <string name="problem_backup_failed">Not saved: no room on this device for the backup copy. Free space and retry.</string>
+    <string name="problem_still_writing">An earlier save is being written. Try again in a moment.</string>
+    <string name="problem_memory">Not saved: not enough memory.</string>
+    <string name="problem_kdf_refused">Not saved: the vault\'s key settings are outside safe limits.</string>
+    <string name="problem_unexpected">Not saved: something went wrong. Your edits are kept.</string>
+    <string name="problem_retry">Retry</string>
+    <string name="problem_save_copy">Save as copy</string>
+    <string name="problem_reload">Reload and lose my edits</string>
+    <string name="problem_keep_editing">Keep editing</string>
+    <string name="problem_details">File details</string>
+    <string name="problem_opened">Opened: %1$s</string>
+    <string name="problem_now">Now: %1$s</string>
+    <string name="copy_saved">Saved a copy as %1$s</string>
+    <string name="copy_saved_unnamed">Saved a copy</string>
+    <string name="copy_failed">The copy wasn\'t saved. Delete the file it left?</string>
+    <string name="copy_refused">Not saved: KashPass writes a copy only to a new, empty file.</string>
+    <string name="copy_done">OK</string>
+    <string name="copy_delete">Delete it</string>
+    <string name="copy_deleted">File deleted.</string>
+    <string name="copy_delete_unsupported">KashPass can\'t delete this file. Delete it in the app that stores it.</string>
+    <string name="backups_title">Vault backups</string>
+    <string name="backups_intro">Encrypted copies of this vault, kept only on this device. Open one to view it or save it as a new file.</string>
+    <string name="backups_empty">No backups yet.</string>
+    <string name="backups_newest">Newest</string>
+    <string name="backups_delete">Delete backup from %1$s</string>
+    <string name="backups_deleted">Backup deleted</string>
+    <string name="backups_delete_failed">Couldn\'t delete the backup. Try again.</string>
+    <string name="backups_info_newest">KashPass always keeps the newest copy, so it can\'t be deleted. It\'s used if the vault file can\'t be opened.</string>
+    <string name="backup_damaged">This backup is corrupted.</string>
+    <string name="backup_slow_kdf">This backup takes much longer to unlock than the file.</string>
+    <string name="backups_open_failed">This backup couldn\'t be opened.</string>
+    <string name="backups_open_old_password">This backup couldn\'t be opened. It may use an older vault password.</string>
+    <string name="backups_open_with_password">Open with its password</string>
+    <string name="banner_last_copy">Can\'t open the vault file. Showing a backup from %1$s.</string>
+    <string name="banner_last_copy_repair">The vault file is damaged. Showing a backup from %1$s. KeePass 2\'s Repair Mode import can recover the rest.</string>
+    <string name="banner_last_copy_corrupted">The vault file is corrupted. Showing a backup from %1$s.</string>
+    <string name="banner_backup">Showing a backup from %1$s.</string>
+    <string name="banner_unsaveable">KashPass can\'t save this vault safely. To make changes, use the KeePass desktop app.</string>
+    <string name="banner_older_file">This file is older than the last version KashPass saw (from %1$s).</string>
+    <string name="banner_use_this_version">Use this version</string>
+    <string name="banner_close_backup">Close backup</string>
+    <string name="banner_save_as_new">Save as new file</string>
+    <string name="banner_save_as_new_hint">To make changes, save it as a new file.</string>
+    <string name="banner_save_as_new_replaces">Saves an editable copy and makes it your vault in place of %1$s.</string>
+    <string name="backup_file_name">%1$s (backup %2$s).kdbx</string>
+    <string name="lock_open_last_copy">Open backup from %1$s</string>
+    <string name="lock_use_password">Use password</string>
+    <string name="lock_biometric_failed">Couldn\'t unlock. Try again or use your vault password.</string>
+    <string name="lock_biometric_needs_key_file">Add the key file to use %1$s.</string>
+    <string name="lock_off_new_biometric">%1$s is off because a new fingerprint or face was added to this device. Unlock with your vault password to turn it back on.</string>
+    <string name="lock_off_locked_out">%1$s is off after too many failed tries. Unlock with your vault password.</string>
+    <string name="lock_off_password_changed">The vault password changed in KeePass 2. Unlock with the new password, then turn %1$s back on in Settings.</string>
+    <string name="lock_off_screen_lock">%1$s is off because this device no longer has a screen lock.</string>
+    <string name="lock_off_biometrics_removed">%1$s is off because this device has no fingerprint or face set up.</string>
+    <string name="lock_off_damaged">%1$s is off because its stored data couldn\'t be read. Unlock with your vault password to turn it back on.</string>
+    <string name="lock_off_unrecoverable_key">%1$s was turned off because this device\'s key store couldn\'t use its key. Turn it on again in Settings.</string>
+    <string name="biometric_name_fingerprint">Fingerprint unlock</string>
+    <string name="biometric_name_face">Face unlock</string>
+    <string name="biometric_name_either">Fingerprint or face unlock</string>
+    <string name="biometric_name_other">Biometric unlock</string>
+    <string name="biometric_noun_fingerprint">fingerprint</string>
+    <string name="biometric_noun_face">face</string>
+    <string name="biometric_noun_either">fingerprint or face</string>
+    <string name="biometric_noun_other">biometric</string>
+    <string name="biometric_button">Unlock with %1$s</string>
+    <string name="biometric_prompt_unlock">Unlock KashPass</string>
+    <string name="biometric_prompt_turn_on">Turn on %1$s</string>
+    <string name="biometric_prompt_cancel">Cancel</string>
+    <string name="browse_settings">Settings</string>
+    <string name="offer_title">Unlock with your %1$s next time?</string>
+    <string name="offer_body">Skip typing the vault password on this device. Turn it off in Settings.</string>
+    <string name="offer_not_now">Not now</string>
+    <string name="offer_turn_on">Turn on</string>
+    <string name="offer_turned_on">%1$s is on for %2$s</string>
+    <string name="offer_failed">Couldn\'t turn on %1$s. Unlock with your vault password.</string>
+    <string name="settings_back">Back</string>
+    <string name="settings_lock_now">Lock vault</string>
+    <string name="settings_biometric">Biometric unlock</string>
+    <string name="settings_biometric_enroll">Add a %1$s in device settings first.</string>
+    <string name="settings_biometric_screen_lock">Set a screen lock in device settings first.</string>
+    <string name="settings_biometric_unavailable">This device doesn\'t support biometric unlock.</string>
+    <string name="settings_biometric_failed">Couldn\'t turn on biometric unlock. Try again.</string>
+    <string name="settings_backup_read_only">Not available while a backup is open.</string>
+    <string name="settings_open_device_settings">Open device settings</string>
+    <string name="settings_choose_file">Open another vault</string>
+    <string name="about_title">About KashPass</string>
+    <string name="about_tagline">Android companion for your KeePass vaults. Secure access, no internet.</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_source">Source code</string>
+    <string name="about_source_detail">On GitHub</string>
+    <string name="about_report">Report a problem</string>
+    <string name="about_report_warning">Never attach your vault.</string>
+    <string name="about_support">Support KashPass</string>
+    <string name="about_support_detail">Thank you to everyone who already does</string>
+    <string name="about_url_source" translatable="false">https://github.com/OneKashLabs/KashPass</string>
+    <string name="about_url_issues" translatable="false">https://github.com/OneKashLabs/KashPass/issues</string>
+    <string name="about_url_support" translatable="false">https://github.com/sponsors/one-kash</string>
+    <string name="lock_unlock_anyway">Unlock anyway</string>
+    <string name="lock_slow_kdf">This file now takes about %1$d times longer to unlock than before. If you didn\'t change its settings in KeePass 2, don\'t continue.</string>
+    <string name="lock_slow_kdf_first">This file\'s unlock settings are about %1$d times KeePass 2\'s default. Unlocking can take minutes.</string>
+    <string name="notice_slow_kdf">This file\'s unlock settings changed. Lock and unlock to review them.</string>
+    <string name="copy_no_picker">No app on this device can create the copy.</string>
+    <string name="lock_finishing_save">Finishing the save…</string>
+    <string name="lock_change_not_saved">Your last change wasn\'t saved.</string>
+    <string name="lock_change_maybe_not_saved">Your last change may not have been saved.</string>
+    <string name="lock_cut_off_save">Your last change on this device wasn\'t saved.</string>
+    <string name="lock_backup_mode">Opening the backup from %1$s. Use the vault password from that time.</string>
+    <string name="lock_backup_cancel">Cancel</string>
+    <string name="copy_name">%1$s (device %2$s).kdbx</string>
+    <string name="copy_name_fallback">Vault</string>
+    <string name="problem_file_state">%1$s, %2$s</string>
+    <!-- Times on the entry sheet, the read-only banner and the lock screen, inside sentences. -->
+    <string name="ago_just_now">just now</string>
+    <string name="ago_yesterday">yesterday</string>
+    <plurals name="ago_minutes">
+        <item quantity="one">%d minute ago</item>
+        <item quantity="other">%d minutes ago</item>
+    </plurals>
+    <plurals name="ago_hours">
+        <item quantity="one">%d hour ago</item>
+        <item quantity="other">%d hours ago</item>
+    </plurals>
+    <plurals name="ago_days">
+        <item quantity="one">%d day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
+    <plurals name="ago_weeks">
+        <item quantity="one">%d week ago</item>
+        <item quantity="other">%d weeks ago</item>
+    </plurals>
+    <plurals name="ago_months">
+        <item quantity="one">%d month ago</item>
+        <item quantity="other">%d months ago</item>
+    </plurals>
+    <string name="entry_created">Created %1$s</string>
+    <string name="entry_edited">Edited %1$s</string>
+    <string name="entry_expired">Expired %1$s · %2$s</string>
+    <string name="entry_expired_on">Expired on %1$s</string>
+    <string name="entry_expires_today">Expires today · %1$s</string>
+    <string name="entry_expires_tomorrow">Expires tomorrow · %1$s</string>
+    <plurals name="entry_expires_in">
+        <item quantity="one">Expires in %1$d day · %2$s</item>
+        <item quantity="other">Expires in %1$d days · %2$s</item>
+    </plurals>
+    <string name="entry_expires_later">Expires %1$s</string>
+    <string name="entry_open">Open %1$s</string>
+    <string name="entry_no_browser">No app on this device can open this link.</string>
+    <string name="cd_opens_in_browser">Opens in browser</string>
+    <string name="browse_expired">Expired</string>
+    <!-- Vault backups sheet -->
+    <string name="settings_keep">Copies to keep</string>
+    <plurals name="settings_keep_state">
+        <item quantity="one">%d copy</item>
+        <item quantity="other">%d copies</item>
+    </plurals>
+    <string name="settings_keep_fewer">Keep fewer copies</string>
+    <string name="settings_keep_more">Keep more copies</string>
+    <plurals name="settings_keep_removes">
+        <item quantity="one">Removes %d older copy. Can\'t be undone.</item>
+        <item quantity="other">Removes %d older copies. Can\'t be undone.</item>
+    </plurals>
+    <string name="settings_keep_remove">Remove</string>
+    <string name="settings_pinned">You can remove copies once KashPass finishes saving.</string>
+    <string name="info_about">About %1$s</string>
+    <string name="settings_info_biometric">Unlock this file with biometrics instead of the vault password.</string>
+    <string name="settings_info_keep">A copy is kept for every change. Older ones beyond this number are removed.</string>
+    <string name="lock_opened_from_app">Opened from another app, read-only. Make it your vault to edit and save.</string>
+    <string name="lock_make_it_your_vault">Make it your vault</string>
+    <string name="lock_opened_replaces">Making it your vault replaces %1$s.</string>
+    <string name="lock_offered_file">Another app sent this file. Opening it makes it your vault in place of %1$s.</string>
+    <string name="lock_offered_first_file">Another app sent this file. Opening it makes it your vault.</string>
+    <string name="lock_open_this_file">Open this file</string>
+    <string name="lock_incoming_cancel">Cancel</string>
+    <string name="banner_provider_read_only">This file\'s app allows reading only.</string>
+    <string name="banner_opened_from_app">Opened from another app, read-only.</string>
+    <string name="read_only_copy_name">%1$s (copy %2$s).kdbx</string>
+    <string name="copy_file_changed">Not saved: the file changed since you opened it. Lock and unlock to see the new version.</string>
+</resources>

@@ -1,0 +1,3 @@
+• Open, search and edit KDBX 4 vaults
+• Password, key file and fingerprint unlock
+• No internet permission

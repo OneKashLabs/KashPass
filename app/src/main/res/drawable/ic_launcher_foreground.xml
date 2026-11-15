@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="88"
+    android:viewportHeight="88">
+    <!-- A password field: cream outline and cursor, three amber dots, on the navy background, inside the 66 dp safe zone. -->
+    <group android:pivotX="44" android:pivotY="44" android:scaleX="0.84" android:scaleY="0.84">
+        <path
+            android:pathData="M31,32 H57 A12,12 0 0 1 57,56 H31 A12,12 0 0 1 31,32 Z"
+            android:strokeColor="#FDF8EC"
+            android:strokeWidth="4" />
+        <path
+            android:fillColor="#F2C14E"
+            android:pathData="M27.4,44 A3.6,3.6 0 1 0 34.6,44 A3.6,3.6 0 1 0 27.4,44 Z M37.4,44 A3.6,3.6 0 1 0 44.6,44 A3.6,3.6 0 1 0 37.4,44 Z M47.4,44 A3.6,3.6 0 1 0 54.6,44 A3.6,3.6 0 1 0 47.4,44 Z" />
+        <path
+            android:fillColor="#FDF8EC"
+            android:pathData="M58.5,38.5 A1.5,1.5 0 0 1 61.5,38.5 V49.5 A1.5,1.5 0 0 1 58.5,49.5 Z" />
+    </group>
+</vector>

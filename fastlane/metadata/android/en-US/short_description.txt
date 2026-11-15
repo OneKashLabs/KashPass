@@ -1,0 +1,1 @@
+Companion for your KeePass vaults with secure access and no internet

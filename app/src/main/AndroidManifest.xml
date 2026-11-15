@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Two permissions declared here, both install-time: HIDE_OVERLAY_WINDOWS lets MainActivity hide
+    other apps' overlay windows while it shows, and USE_BIOMETRIC lets biometric unlock show
+    Android's fingerprint or face prompt. AndroidX adds a third, its app-private
+    DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION. The vault file is reached through the system file
+    picker (Storage Access Framework), which needs none. A build check fails if the merged
+    manifest declares any other permission.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.HIDE_OVERLAY_WINDOWS" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
+    <!-- Touch is optional, so Google Play also lists the app for devices without a touchscreen,
+         such as Chromebooks. Without this line every app requires one by default. -->
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <!-- largeHeap: Argon2 allocates its whole memory setting at once, and VaultOpener refuses a
+         setting above half the heap, so the heap size sets which Argon2 vaults open. -->
+    <application
+        android:name=".KashPassApp"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:largeHeap="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Material.NoActionBar">
+
+        <!-- singleTask: Open with from another app lands in the existing KashPass task
+             (onNewIntent), never in a second instance inside the caller's task. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Open with for KDBX files: content URIs only, never file:. .kdbx has no
+                 registered MIME type and providers report it as application/octet-stream, so
+                 KashPass is offered for other binary files too. MainActivity reads the action,
+                 flags and data URI (openWithUri), never extras, and nothing opens without the
+                 vault's password or key file. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content" />
+                <data android:mimeType="application/octet-stream" />
+                <data android:mimeType="application/x-kdbx" />
+                <data android:mimeType="application/x-keepass" />
+            </intent-filter>
+        </activity>
+
+        <!-- Clears the clipboard after a copy; only KashPass's own explicit alarm intent
+             reaches it. -->
+        <receiver
+            android:name=".ClipboardClearReceiver"
+            android:exported="false" />
+
+        <!-- Keeps a save running after the app leaves the foreground: an expedited job, which needs
+             no uses-permission; only the system's job scheduler can bind it. -->
+        <service
+            android:name=".SaveKeepAliveJob"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- AndroidX startup work KashPass doesn't use. EmojiCompat asks Google Play services'
+             font provider for an emoji font at every start; Android 12+ draws emoji with its
+             system font. ProcessLifecycleOwner has no caller; the lock follows MainActivity's own
+             lifecycle. These AndroidX classes arrive only on the runtime classpath, which lint's
+             MissingClass check doesn't read. -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:ignore="MissingClass"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                tools:node="remove" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                tools:node="remove" />
+        </provider>
+
+        <!-- Serves adb and benchmark tools only. AndroidX's ProfileInstallerInitializer installs
+             the baseline profile at startup without it. -->
+        <receiver
+            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+            tools:ignore="MissingClass"
+            tools:node="remove" />
+    </application>
+
+</manifest>

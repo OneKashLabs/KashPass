@@ -1,0 +1,81 @@
+# Built application files
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+
+# Gradle
+.gradle/
+build/
+.kotlin/
+
+# Local configuration (sdk path, signing)
+local.properties
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+*.hprof
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# Signing keys and signing details: never commit (keystore.properties is the name the Android
+# docs suggest for signing details kept out of build files)
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.p8
+keystore.properties
+signing.properties
+.env
+# APK Signature Scheme v4 sidecars and R8 mappings belong to release folders, not the repo
+*.idsig
+mapping.txt
+
+# Vault and key files: never commit. The only exception is the test vaults and
+# their key files (throwaway password and key) under vault-core test resources.
+*.kdbx
+*.kdb
+*.keyx
+*.key
+!vault-core/src/test/resources/fixtures/*.kdbx
+!vault-core/src/test/resources/fixtures/*.keyx
+!vault-core/src/test/resources/fixtures/*.key
+
+# Credentials: never commit. Narrower than *credentials* so Kotlin files like
+# UnlockCredentials.kt stay tracked.
+*credentials*.json
+*credentials*.properties
+*secret*.json
+*secret*.properties
+*.secret
+
+# Local docs
+CLAUDE.md
+.claude/
+.devloop/
+*tracker*.json
+
+# Local tooling (preflight, comment checks, store screenshots)
+scripts/
+store-art/
+
+# Local design mockups and planning notes (never shipped)
+.local-docs/
+
+# Android CLI agent skills (installed by `android skills add --project=.`)
+skills/
+
+# Jazzer's grown corpus and the inputs it saves next to the tests; a crash becomes a corpus
+# recipe in code, never a committed file.
+vault-core/.cifuzz-corpus/
+vault-core/src/test/resources/org/onekash/kashpass/vault/fuzz/

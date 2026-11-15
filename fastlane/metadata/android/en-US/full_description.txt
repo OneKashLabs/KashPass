@@ -1,0 +1,33 @@
+Open and edit your KeePass vault on your phone. Changes save to the same file you open in KeePass 2.
+
+<b>Features</b>
+<ul>
+<li>Opens KDBX 4.0 and 4.1 vaults</li>
+<li>Unlocks with a password, key file, fingerprint or face</li>
+<li>Searches entries and copies fields; the clipboard clears after 30 seconds</li>
+<li>Adds, edits and deletes entries, with history and recycle bin</li>
+<li>Locks when the screen turns off or 1 minute after you leave the app</li>
+</ul>
+
+<b>Saving</b>
+<ul>
+<li>Saves to the same file</li>
+<li>Checks for newer changes before saving</li>
+<li>Reads each save back to check it</li>
+<li>Keeps encrypted backups on the phone</li>
+</ul>
+
+<b>Security</b>
+<ul>
+<li>No internet permission, no accounts, no tracking</li>
+<li>Never writes decrypted data to storage or logs</li>
+<li>Blocks screenshots and other apps' overlays</li>
+<li>Refuses unsafe or weakened unlock settings</li>
+</ul>
+
+<b>Not included</b>
+Autofill, sync servers, creating vaults, KDBX 3, opening attachments, TOTP codes.
+
+Requires Android 12 or later and a KDBX 4 vault.
+
+Free and open source (AGPL). Not affiliated with KeePass.
